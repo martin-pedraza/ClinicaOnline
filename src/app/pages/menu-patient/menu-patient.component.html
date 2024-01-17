@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-50"
+        id="logo"
+        [@fadeInOut]="loading ? 'void' : ''"
+        appBackground
+        [backgroundColor]="'white'"
+      >
+        <div class="d-flex justify-content-center align-items-center">
+          <img appLogo/>
+          <h1>Clínica OnLine</h1>
+        </div>
+        <h2 class="text-uppercase" appEmoticon>La bienvenida a {{ user["firstname"] }}</h2>
+        <i
+          class="bi bi-arrow-left-circle-fill"
+          style="font-size: 2em"
+          (click)="signout()"
+          >CERRAR SESIÓN</i
+        >
+      </div>
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        id="requestAppointment"
+        routerLink="request-appointment"
+        appBackground
+        [backgroundColor]="'red'"
+      >
+        <h2 class="text-light">SOLICITAR TURNO</h2>
+      </button>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        id="profile"
+        routerLink="profile"
+        appBackground
+        [backgroundColor]="'red'"
+      >
+        <h2 class="text-light">MI PERFIL</h2>
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        id="myAppointment"
+        routerLink="my-appointment"
+        appBackground
+        [backgroundColor]="'grey'"
+      >
+        <h2 class="text-light">MIS TURNOS</h2>
+      </button>
+    </div>
+  </div>
+</div>

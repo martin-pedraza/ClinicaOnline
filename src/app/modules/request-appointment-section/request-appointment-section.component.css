@@ -1,0 +1,31 @@
+#logo {
+  background-color: #c70904;
+}
+
+#list {
+  background-color: #f4f1de;
+}
+
+#filters {
+  background-color: #3d405b;
+}
+
+.square {
+  height: 80px;
+  width: 80px;
+}
+
+.rectangular {
+  height: 80px;
+  width: 130px;
+}
+
+.image {
+  height: 100%;
+  width: auto;
+}
+
+.rectangular .image{
+  height: 60%;
+  width: auto;
+}

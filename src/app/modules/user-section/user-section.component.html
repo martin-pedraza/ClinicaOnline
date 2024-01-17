@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100"
+        id="data"
+      >
+        <!-- INFO -->
+        <app-user-list
+          *ngIf="selectedMain == 'list'"
+          style="width: 100%"
+        ></app-user-list>
+        <app-admin-register-form
+          *ngIf="selectedMain == 'admin'"
+        ></app-admin-register-form>
+        <app-healthcare-register-form
+          *ngIf="selectedMain == 'healthcare'"
+          (formEvent)="changeMain($event)"
+        ></app-healthcare-register-form>
+        <app-patient-register-form
+          *ngIf="selectedMain == 'patient'"
+          (formEvent)="changeMain($event)"
+        ></app-patient-register-form>
+        <app-specialist-register-form
+          *ngIf="selectedMain == 'specialist'"
+          (formEvent)="changeMain($event)"
+        ></app-specialist-register-form>
+        <app-specialty-register-form
+          *ngIf="selectedMain == 'specialty'"
+          (formEvent)="changeMain($event)"
+        ></app-specialty-register-form>
+        <i
+          class="bi bi-arrow-left-circle-fill text-light"
+          style="font-size: 3em"
+          (click)="goBack()"
+          >VOLVER</i
+        >
+      </div>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <button
+        class="d-flex flex-column justify-content-center align-items-center h-50 w-100"
+        id="list"
+        (click)="changeMain('list')"
+      >
+        <h2 class="">LISTADO</h2>
+        <button type="button" class="btn btn-success" (click)="exportToExcel()">
+          DESCARGAR
+        </button>
+      </button>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-50 w-100"
+        id="register"
+      >
+        <h2 class="text-light">REGISTRO</h2>
+        <select
+          class="form-select w-50 text-center"
+          aria-label="Default select example"
+          (change)="changeSelect($event)"
+        >
+          <option selected disabled>USUARIOS</option>
+          <option value="patient">PACIENTE</option>
+          <option value="specialist">ESPECIALISTA</option>
+          <option value="admin">ADMINISTRADOR</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<h4 class="text-center text-light">OBRA SOCIAL</h4>
+<form
+  [formGroup]="form"
+  (ngSubmit)="sentForm()"
+  class="container-fluid text-center text-light mh-100"
+>
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-12">
+      <label class="form-label" for="name">
+        NOMBRE
+        <br />
+        <ng-container *ngIf="name?.hasError('pattern')">
+          <small class="text-light">(Sólo debe contener letras)</small>
+        </ng-container>
+        <ng-container *ngIf="name?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+        <ng-container *ngIf="name?.hasError('minlength')">
+          <small class="text-light">(Longitud minima: 3)</small>
+        </ng-container>
+        <small class="text-light">
+          {{ name?.getError("healthcareExist") }}
+        </small>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        formControlName="name"
+      />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <button
+      type="button"
+      class="btn btn-dark col-6"
+      (click)="changeForm('patient')"
+    >
+      CANCELAR
+    </button>
+    <button type="submit" class="btn btn-dark col-6" [disabled]="name?.errors">
+      <span
+        class="spinner-border spinner-border-sm"
+        aria-hidden="true"
+        [hidden]="!spinner"
+      ></span>
+      AGREGAR
+    </button>
+  </div>
+</form>

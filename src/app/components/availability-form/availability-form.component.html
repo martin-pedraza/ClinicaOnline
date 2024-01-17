@@ -1,0 +1,272 @@
+<h2 class="text-light text-center">DISPONIBILIDAD HORARIA</h2>
+<form
+  [formGroup]="form"
+  (ngSubmit)="sentForm()"
+  class="container-fluid text-center text-light mh-100"
+>
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label for="startDate" class="form-label">
+        FECHA INICIO
+        <br />
+        <ng-container *ngIf="startDate?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="date"
+        id="startDate"
+        class="form-control"
+        name="startDate"
+        formControlName="startDate"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label for="endDate" class="form-label"
+        >FECHA FIN
+        <br />
+        <small>(opcional)</small>
+      </label>
+      <input
+        type="date"
+        id="endDate"
+        class="form-control"
+        name="endDate"
+        formControlName="endDate"
+      />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label for="startTime" class="form-label">
+        HORARIO INICIO
+        <br />
+        <ng-container *ngIf="startTime?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="time"
+        id="startTime"
+        class="form-control"
+        name="startTime"
+        formControlName="startTime"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label for="endTime" class="form-label">
+        HORARIO FIN
+        <br />
+        <ng-container *ngIf="endTime?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="time"
+        id="endTime"
+        class="form-control"
+        name="endTime"
+        formControlName="endTime"
+      />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label for="day" class="form-label">
+        DIAS
+        <br />
+        <ng-container *ngIf="day?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <div class="overflow-auto" style="height: 50px">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="monday"
+            id="monday"
+            formControlName="day"
+            checked
+            (change)="addDay('lunes')"
+          />
+          <label class="form-check-label" for="monday"> LUNES </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="tuesday"
+            id="tuesday"
+            formControlName="day"
+            checked
+            (change)="addDay('martes')"
+          />
+          <label class="form-check-label" for="tuesday"> MARTES </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="wednesday"
+            formControlName="day"
+            id="wednesday"
+            checked
+            (change)="addDay('miercoles')"
+          />
+          <label class="form-check-label" for="wednesday"> MIERCOLES </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="thursday"
+            formControlName="day"
+            id="thursday"
+            checked
+            (change)="addDay('jueves')"
+          />
+          <label class="form-check-label" for="thursday"> JUEVES </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="friday"
+            formControlName="day"
+            id="friday"
+            checked
+            (change)="addDay('viernes')"
+          />
+          <label class="form-check-label" for="friday"> VIERNES </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="saturday"
+            formControlName="day"
+            id="saturday"
+            (change)="addDay('sabado')"
+          />
+          <label class="form-check-label" for="saturday"> SABADO </label>
+        </div>
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            value="sunday"
+            formControlName="day"
+            id="sunday"
+            (change)="addDay('domingo')"
+          />
+          <label class="form-check-label" for="sunday"> DOMINGO </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-control-group col-6">
+      <label for="interval" class="form-label">
+        INTERVALO ENTRE TURNOS
+        <br />
+        <ng-container *ngIf="interval?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <div class="input-group">
+        <input
+          type="number"
+          id="interval"
+          class="form-control"
+          name="interval"
+          formControlName="interval"
+          aria-describedby="basic-addon2"
+        />
+        <span class="input-group-text" id="basic-addon2">minutos</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label for="specialty" class="form-label">
+        ESPECIALIDAD
+        <br />
+        <ng-container *ngIf="specialty?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <select
+        class="form-select text-center"
+        aria-label="Default select example"
+        id="specialty"
+        formControlName="specialty"
+      >
+        <option value="{{ sp }}" *ngFor="let sp of user.specialty">
+          {{ sp }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-control-group col-6">
+      <label for="appointment" class="form-label">
+        DURACIÓN DE TURNOS
+        <br />
+        <ng-container *ngIf="appointment?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <div class="input-group">
+        <input
+          type="number"
+          id="appointment"
+          class="form-control"
+          name="appointment"
+          formControlName="appointment"
+          aria-describedby="basic-addon1"
+        />
+        <span class="input-group-text" id="basic-addon1">minutos</span>
+      </div>
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="btn btn-dark col-6 h-50 align-self-end"
+    [disabled]="
+      startDate?.errors ||
+      endDate?.errors ||
+      startTime?.errors ||
+      endTime?.errors ||
+      day?.errors ||
+      interval?.errors ||
+      specialty?.errors ||
+      appointment?.errors ||
+      spinner
+    "
+  >
+    <span
+      class="spinner-border spinner-border-sm"
+      aria-hidden="true"
+      [hidden]="!spinner"
+    ></span>
+    GUARDAR
+  </button>
+</form>
+<div class="d-flex justify-content-between w-100">
+  <i
+    style="font-size: 2em"
+    (click)="changeOption('profile')"
+    class="text-light bi bi-arrow-left-circle-fill"
+    >PERFIL</i
+  >
+  <span
+    class="text-light"
+    style="font-size: 2em"
+    (click)="changeOption('current-availability')"
+    >ACTUAL<i class="bi bi-arrow-right-circle-fill"></i
+  ></span>
+</div>

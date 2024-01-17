@@ -1,0 +1,22 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">CORREO</th>
+      <th scope="col">FECHA</th>
+      <th scope="col">HORA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of logList; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ l.email }}</td>
+      <td>{{ l.date }}</td>
+      <td>{{ l.time }}</td>
+    </tr>
+  </tbody>
+</table>
+<hr />
+<button type="button" class="btn btn-success" (click)="downloadReport()">
+  DESCARGAR
+</button>

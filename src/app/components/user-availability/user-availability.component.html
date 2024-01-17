@@ -1,0 +1,43 @@
+<div class="container-fluid d-flex flex-column text-uppercase">
+  <h1 class="w-100 text-light" *ngIf="availabilityList.length < 1">NO HAY DISPONILIDAD CARGADA</h1>
+  <div class="card" *ngFor="let a of availabilityList">
+    <h5 class="card-header">{{ a.specialty }}</h5>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Fecha inicio: {{ a.startDate }}</li>
+        <li class="list-group-item">Fecha fin: {{ a.endDate }}</li>
+        <li class="list-group-item">Hora inicio: {{ a.startTime }}</li>
+        <li class="list-group-item">Hora fin: {{ a.endTime }}</li>
+        <li class="list-group-item">Dias: {{ a.day }}</li>
+        <li class="list-group-item">
+          Duracion de turnos: {{ a.appointmentDuration }}
+        </li>
+        <li class="list-group-item">
+          Intervalo entre turnos: {{ a.interval }}
+        </li>
+      </ul>
+      <button
+        type="button"
+        class="btn btn-danger"
+        (click)="cancelAvailability(a.id)"
+      >
+        CANCELAR
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between w-100">
+  <i
+    style="font-size: 2em"
+    (click)="changeOption('profile')"
+    class="text-light bi bi-arrow-left-circle-fill"
+    >PERFIL</i
+  >
+  <span
+    class="text-light"
+    style="font-size: 2em"
+    (click)="changeOption('availability')"
+    >NUEVO<i class="bi bi-arrow-right-circle-fill"></i
+  ></span>
+</div>

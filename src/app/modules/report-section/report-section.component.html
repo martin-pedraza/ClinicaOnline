@@ -1,0 +1,114 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div class="d-flex h-50">
+        <button
+          class="d-flex justify-content-center align-items-center h-100 w-50"
+          appBackground
+          [backgroundColor]="'red'"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeReport('asked')"
+        >
+          <h2 class="text-light">SOLICITADOS</h2>
+        </button>
+        <button
+          class="d-flex justify-content-center align-items-center h-100 w-50"
+          appBackground
+          [backgroundColor]="'grey'"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeReport('finished')"
+        >
+          <h2 class="text-light">FINALIZADOS</h2>
+        </button>
+      </div>
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        appBackground
+        [backgroundColor]="'white'"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="changeReport('log')"
+      >
+        <h2>INGRESOS</h2>
+      </button>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-50"
+        [@fadeInOut]="loading ? 'void' : ''"
+        appBackground
+        [backgroundColor]="'white'"
+      >
+        <div class="d-flex justify-content-center align-items-center">
+          <img appLogo />
+          <h1>Clínica OnLine</h1>
+        </div>
+        <i
+          class="bi bi-arrow-left-circle-fill"
+          style="font-size: 2em"
+          (click)="goBack()"
+          >VOLVER</i
+        >
+      </div>
+      <div class="d-flex h-100">
+        <button
+          class="d-flex justify-content-center align-items-center h-50 w-50"
+          appBackground
+          [backgroundColor]="'red'"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeReport('specialty')"
+        >
+          <h2 class="text-light">ESPECIALIDAD</h2>
+        </button>
+        <button
+          class="d-flex justify-content-center align-items-center h-50 w-50"
+          appBackground
+          [backgroundColor]="'grey'"
+          data-bs-toggle="modal"
+          data-bs-target="#exampleModal"
+          (click)="changeReport('day')"
+        >
+          <h2 class="text-light">DIA</h2>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">REPORTE</h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <app-log-report-table *ngIf="report == 'log'"></app-log-report-table>
+        <app-specialty-report-chart
+          *ngIf="report == 'specialty'"
+        ></app-specialty-report-chart>
+        <app-day-report-chart *ngIf="report == 'day'"></app-day-report-chart>
+        <app-asked-appointment-report-chart
+          *ngIf="report == 'asked'"
+        ></app-asked-appointment-report-chart>
+        <app-finished-appointment-report-chart
+          *ngIf="report == 'finished'"
+        ></app-finished-appointment-report-chart>
+      </div>
+    </div>
+  </div>
+</div>

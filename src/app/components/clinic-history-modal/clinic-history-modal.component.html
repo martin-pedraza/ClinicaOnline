@@ -1,0 +1,72 @@
+<button
+  type="button"
+  class="btn btn-dark"
+  data-bs-toggle="modal"
+  [attr.data-bs-target]="'#p' + user.dni"
+>
+  Historial
+</button>
+
+<div
+  class="modal fade"
+  id="p{{ user.dni }}"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          HISTORIA CLINICA - {{ user.patientName }}
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body d-flex flex-column justify-content-center">
+        <!-- BD -->
+        <div class="card my-2 w-100 d-flex" *ngFor="let h of historialList">
+          <div class="row g-0 mt-3">
+            <div class="col-md-12">
+              <div class="card-body">
+                <h5 class="card-title text-uppercase">
+                  {{ h.date }}  {{ h.specialty }}
+                </h5>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item" *ngIf="h.cm != ''">
+                    Altura: {{ h.cm }} cm
+                  </li>
+                  <li class="list-group-item" *ngIf="h.kg != ''">
+                    Peso: {{ h.kg }} kg
+                  </li>
+                  <li class="list-group-item" *ngIf="h.c != ''">
+                    Temperatura: {{ h.c }} °C
+                  </li>
+                  <li class="list-group-item" *ngIf="h.lowmmHg != ''">
+                    Presión baja: {{ h.lowmmHg }} mmHg
+                  </li>
+                  <li class="list-group-item" *ngIf="h.highmmHg != ''">
+                    Presión alta: {{ h.highmmHg }} mmHg
+                  </li>
+                  <li class="list-group-item" *ngIf="h.key1 != ''">
+                    {{ h.key1 }}: {{ h.value1 }}
+                  </li>
+                  <li class="list-group-item" *ngIf="h.key2 != ''">
+                    {{ h.key2 }}: {{ h.value2 }}
+                  </li>
+                  <li class="list-group-item" *ngIf="h.key3 != ''">
+                    {{ h.key3 }}: {{ h.value3 }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

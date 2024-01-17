@@ -1,0 +1,75 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-10 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100"
+        id="form"
+        appBackground
+        [backgroundColor]="'white'"
+      >
+        <img appLogo [size]="'100px'" />
+        <!-- FORM -->
+        <app-login-form [autofill]="currentUser"></app-login-form>
+        <i
+          class="bi bi-arrow-left-circle-fill"
+          style="font-size: 3em"
+          (click)="goBack()"
+          >INICIO</i
+        >
+      </div>
+    </div>
+    <div
+      class="col-md-2 d-flex justify-content-center align-items-center flex-column p-0"
+      style="height: 100%"
+    >
+      <button
+        class="d-flex justify-content-center align-items-center square patient rounded"
+        (click)="selectUser(p1)"
+        appBackground
+        [backgroundColor]="'grey'"
+      >
+        <img src="{{ p1.firstImage }}" alt="" class="image" width="100px" />
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center square patient rounded"
+        (click)="selectUser(p2)"
+        appBackground
+        [backgroundColor]="'grey'"
+      >
+        <img src="{{ p2.firstImage }}" alt="" class="image" width="100px" />
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center square patient rounded"
+        (click)="selectUser(p3)"
+        appBackground
+        [backgroundColor]="'grey'"
+      >
+        <img src="{{ p3.firstImage }}" alt="" class="image" width="100px" />
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center square specialist rounded"
+        (click)="selectUser(s1)"
+        appBackground
+        [backgroundColor]="'red'"
+      >
+        <img src="{{ s1.image }}" alt="" class="image" width="30px" />
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center square specialist rounded"
+        (click)="selectUser(s2)"
+        appBackground
+        [backgroundColor]="'red'"
+      >
+        <img src="{{ s2.image }}" alt="" class="image" width="50px" />
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center square admin rounded"
+        (click)="selectUser(a1)"
+        appBackground
+        [backgroundColor]="'grey'"
+      >
+        <img src="{{ a1.image }}" alt="" class="image" width="30px" />
+      </button>
+    </div>
+  </div>
+</div>

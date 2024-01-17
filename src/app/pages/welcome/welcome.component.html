@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex justify-content-center align-items-center h-100"
+        id="welcome"
+        appBackground [backgroundColor]="'white'"
+      >
+        <img appLogo alt="logo"/>
+        <!-- <img src="assets/clinic-icon.png" alt="" /> -->
+        <h1>Clínica OnLine</h1>
+      </div>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        id="login"
+        routerLink="/login"
+        appBackground [backgroundColor]="'red'"
+      >
+        <h2 class="text-light">ACCESO</h2>
+      </button>
+      <button
+        class="d-flex justify-content-center align-items-center h-50 w-100"
+        id="register"
+        routerLink="/register"
+        appBackground [backgroundColor]="'grey'"
+      >
+        <h2 class="text-light">REGISTRO</h2>
+      </button>
+    </div>
+  </div>
+</div>

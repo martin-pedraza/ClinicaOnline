@@ -1,0 +1,125 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <!-- APPOINTMENT -->
+      <div class="w-100 h-100" id="appointment">
+        <h2 class="text-center">TURNOS</h2>
+        <div class="h-75 overflow-auto text-uppercase">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
+            <div
+              class="card w-75"
+              *ngFor="
+                let a of filteredList.length > 0
+                  ? filteredList
+                  : appointmentList
+              "
+            >
+              <div class="card-body">
+                <div class="card" style="min-width: 100%">
+                  <h5 class="card-title">ESTADO: {{ a.status }}</h5>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                      ESPECIALIDAD: {{ a.specialty }}
+                    </li>
+                    <li class="list-group-item">
+                      ESPECIALISTA: {{ a.specialistName }}
+                    </li>
+                    <li class="list-group-item">
+                      PACIENTE: {{ a.patientName }}
+                    </li>
+                    <li class="list-group-item">DIA: {{ a.day }}</li>
+                    <li class="list-group-item">HORA: {{ a.time }}</li>
+                  </ul>
+                </div>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  [disabled]="spinner"
+                  *ngIf="a.status == 'reserved'"
+                  (click)="changeForm('cancel', a, '')"
+                >
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    aria-hidden="true"
+                    [hidden]="!spinner"
+                  ></span>
+                  CANCELAR
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  [disabled]="spinner"
+                  *ngIf="a.status == 'cancelled'"
+                  (click)="changeForm('reason', a, a.reason)"
+                >
+                  <span
+                    class="spinner-border spinner-border-sm"
+                    aria-hidden="true"
+                    [hidden]="!spinner"
+                  ></span>
+                  RAZÓN
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-50 text-light"
+        id="filter"
+      >
+        <i
+          class="bi bi-arrow-left-circle-fill mb-4"
+          style="font-size: 2em"
+          (click)="goBack()"
+          >VOLVER</i
+        >
+        <h2 class="text-light">ESPECIALIDAD / ESPECIALISTA</h2>
+        <select
+          class="form-select w-50 text-center"
+          aria-label="Default select example"
+          (change)="changeFilter($event)"
+        >
+          <option selected disabled>FILTRO</option>
+          <option *ngFor="let o of optionList" value="{{ o }}">
+            {{ o }}
+          </option>
+        </select>
+      </div>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-50 w-100"
+        id="info"
+      >
+        <div
+          class="form-floating h-50 w-75"
+          *ngIf="formShown == 'cancel' || formShown == 'reason'"
+        >
+          <textarea
+            class="form-control w-100 h-100"
+            id="floatingTextarea2"
+            [(ngModel)]="textAreaValue"
+            [disabled]="formShown == 'reason'"
+          >
+          </textarea>
+          <label for="floatingTextarea2" *ngIf="formShown == 'cancel'"
+            >Razón de cancelar</label
+          >
+        </div>
+
+        <button
+          type="button"
+          class="btn btn-dark"
+          *ngIf="formShown == 'cancel'"
+          (click)="cancelAppointment()"
+          [disabled]="textAreaValue.length < 3"
+        >
+          ENVIAR
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

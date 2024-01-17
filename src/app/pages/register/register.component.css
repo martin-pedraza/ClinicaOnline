@@ -1,0 +1,17 @@
+/* #patient {
+  background-color: #c70904;
+}
+
+#specialist {
+  background-color: #3d405b;
+} */
+
+.option {
+  width: 200px;
+  height: 200px;
+}
+
+.image {
+  height: 100%;
+  width: 100%;
+}

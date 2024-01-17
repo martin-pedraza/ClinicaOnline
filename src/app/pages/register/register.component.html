@@ -1,0 +1,22 @@
+<div class="container-fluid">
+    <div class="row" style="height: 100vh;">
+        <div class="col-md-6 p-0" style="height: 100%;">
+            <div class="d-flex flex-column justify-content-center align-items-center h-100" id="specialist" appBackground [backgroundColor]="'grey'">
+                <img appLogo [size]="'80px'" routerLink="/">
+                <!-- FORM -->
+                <button *ngIf="selectedFormSpecialist==''" class="option btn btn-dark rounded" type="button" (click)="changeFormSpecialist('specialist')"><img class="image" src="./../../../assets/doctor-icon.png" alt=""></button>
+                <app-specialist-register-form (formEvent)="changeFormSpecialist($event)" *ngIf="selectedFormSpecialist=='specialist'"></app-specialist-register-form>
+                <app-specialty-register-form (formEvent)="changeFormSpecialist($event)" *ngIf="selectedFormSpecialist=='specialty'"></app-specialty-register-form>
+            </div>
+        </div>
+        <div class="col-md-6 p-0" style="height: 100%;">
+            <div class="d-flex flex-column justify-content-center align-items-center h-100" id="patient" appBackground [backgroundColor]="'red'">
+                <i class="bi bi-arrow-left-circle-fill" style="font-size: 3em;" routerLink="/">INICIO</i>
+                <!-- FORM -->
+                <button *ngIf="selectedFormPatient==''" class="option btn btn-dark rounded" type="button" (click)="changeFormPatient('patient')"><img class="image" src="./../../../assets/patient-icon.png" alt=""></button>
+                <app-patient-register-form (formEvent)="changeFormPatient($event)" *ngIf="selectedFormPatient=='patient'"></app-patient-register-form>
+                <app-healthcare-register-form (formEvent)="changeFormPatient($event)" *ngIf="selectedFormPatient=='healthcare'"></app-healthcare-register-form>
+            </div>
+        </div>
+    </div>
+</div>  

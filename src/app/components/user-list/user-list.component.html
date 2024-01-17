@@ -1,0 +1,132 @@
+<div class="container-fluid">
+  <div
+    class="overflow-auto d-flex justify-content-center flex-wrap"
+    style="max-height: 70vh"
+  >
+    <h2 class="text-light text-center col-12 my-3">ESPECIALISTAS</h2>
+
+    <div
+      class="card my-2"
+      style="width: 540px"
+      *ngFor="let sp of specialistList; let i = index"
+      (click)="downloadAppointment(sp.dni, false)"
+    >
+      <div class="row g-0">
+        <div class="col-md-4">
+          <img src="{{ sp.image }}" class="img-fluid rounded-start" alt="..." />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title text-uppercase">
+              {{ sp.lastname }}, {{ sp.firstname }}
+            </h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">DNI: {{ sp.dni }}</li>
+              <li class="list-group-item">Edad: {{ sp.age }}</li>
+              <li class="list-group-item">
+                Correo electrónico: {{ sp.email }}
+              </li>
+              <li class="list-group-item">Especialidad: {{ sp.specialty }}</li>
+              <li class="list-group-item">
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  *ngIf="sp.status != 'enabled'"
+                  (click)="enableAccount(true, sp.id)"
+                >
+                  Habilitar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  *ngIf="sp.status == 'enabled'"
+                  (click)="enableAccount(false, sp.id)"
+                >
+                  Deshabilitar
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="text-light text-center col-12 my-3">PACIENTES</h2>
+    <div
+      class="card my-2"
+      style="width: 540px"
+      *ngFor="let p of patientList; let i = index"
+      (click)="downloadAppointment(p.dni, true)"
+    >
+      <div class="row g-0">
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title text-uppercase">
+              {{ p.lastname }}, {{ p.firstname }}
+            </h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">DNI: {{ p.dni }}</li>
+              <li class="list-group-item">Edad: {{ p.age }}</li>
+              <li class="list-group-item">Correo electrónico: {{ p.email }}</li>
+              <li class="list-group-item">Obra social: {{ p.healthcare }}</li>
+              <li class="list-group-item">
+                <app-clinic-history-modal
+                  [user]="{
+                    patientName: p.firstname + ' ' + p.lastname,
+                    dni: p.dni
+                  }"
+                ></app-clinic-history-modal>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div id="carouselExample" class="carousel slide">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img
+                  src="{{ p.firstImage }}"
+                  class="img-fluid rounded-end"
+                  alt="..."
+                />
+              </div>
+              <div class="carousel-item" *ngIf="p.secondImage != ''">
+                <img
+                  src="{{ p.secondImage }}"
+                  class="img-fluid rounded-end"
+                  alt="..."
+                />
+              </div>
+            </div>
+            <button
+              class="carousel-control-prev"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="prev"
+              *ngIf="p.secondImage != ''"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button
+              class="carousel-control-next"
+              type="button"
+              data-bs-target="#carouselExample"
+              data-bs-slide="next"
+              *ngIf="p.secondImage != ''"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

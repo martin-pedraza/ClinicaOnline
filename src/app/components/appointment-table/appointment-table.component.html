@@ -1,0 +1,18 @@
+<table class="table" *ngIf="appointmentList.length > 0">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Especialidad</th>
+      <th scope="col">Hora</th>
+      <th scope="col">Fecha</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let a of appointmentList; index as i">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ a.specialty }}</td>
+      <td>{{ a.time }}</td>
+      <td>{{ a.day }}</td>
+    </tr>
+  </tbody>
+</table>

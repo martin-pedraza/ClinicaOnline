@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div
+    class="overflow-auto d-flex justify-content-center flex-wrap flex-column"
+    style="max-height: 70vh"
+  >
+    <h2 class="text-light text-center col-12 my-3">PACIENTES</h2>
+
+    <div class="card" *ngFor="let p of patientList">
+      <h5 class="card-header">{{ p.patientName }}</h5>
+      <div class="card-body">
+        <p class="card-text">
+          <app-appointment-table
+          [user]="{ dni: p.patientDni, profile: 'patient' }"
+        ></app-appointment-table>
+        </p>
+        <app-clinic-history-modal
+          [user]="{ patientName: p.patientName, dni: p.patientDni }"
+        ></app-clinic-history-modal>
+      </div>
+    </div>
+  </div>
+</div>

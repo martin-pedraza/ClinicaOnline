@@ -1,0 +1,75 @@
+<div
+  class="container text-light text-center d-flex flex-column justify-content-center text-uppercase"
+>
+  <div id="carouselExample" class="carousel slide">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img
+          src="{{ firstImage }}"
+          class="img-thumbnail"
+          alt="image"
+          width="100px"
+        />
+      </div>
+      <div class="carousel-item" *ngIf="secondImage != ''">
+        <img
+          src="{{ secondImage }}"
+          class="img-thumbnail"
+          alt="second image"
+          width="100px"
+        />
+      </div>
+    </div>
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="prev"
+      *ngIf="secondImage != ''"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#carouselExample"
+      data-bs-slide="next"
+      *ngIf="secondImage != ''"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <h1 class="text-decoration-underline">
+    {{ user.firstname }} {{ user.lastname }}
+  </h1>
+  <ul class="list-group list-group-flush text-start">
+    <li class="list-group-item">Edad: {{ user.age }}</li>
+    <li class="list-group-item">DNI: {{ user.dni }}</li>
+    <li class="list-group-item">Correo electrónico: {{ user.email }}</li>
+    <li class="list-group-item" *ngIf="other != ''">{{ other }}</li>
+
+    <li class="list-group-item" *ngIf="list != null">
+      <select class="form-select" aria-label="Default select example" (change)="changeSelect($event)">
+        <option value="Descarga" selected disabled>Descarga</option>
+        <option *ngFor="let key of getObjectKeys(list)">{{ key }}</option>
+      </select>
+    </li>
+
+    <li class="list-group-item" *ngIf="user.profile == 'patient'">
+      <app-clinic-history-modal
+        [user]="{
+          patientName: user.firstname + ' ' + user.lastname,
+          dni: user.dni
+        }"
+      ></app-clinic-history-modal>
+    </li>
+  </ul>
+  <i
+    style="font-size: 2em"
+    *ngIf="user.profile == 'specialist'"
+    (click)="changeOption('current-availability')"
+    >DISPONIBILIDAD HORARIA</i
+  >
+</div>

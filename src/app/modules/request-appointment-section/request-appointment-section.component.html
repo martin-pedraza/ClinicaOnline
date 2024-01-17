@@ -1,0 +1,154 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="height: 100%">
+      <!-- APPOINTMENT -->
+      <div
+        class="d-flex flex-column justify-content-center align-items-center w-100 h-100"
+      >
+        <h2>TURNOS</h2>
+        <div class="card" *ngFor="let a of filteredList">
+          <div class="card-body">
+            <div class="card" style="width: 18rem">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">ESPECIALIDAD: {{ a.specialty }}</li>
+                <li class="list-group-item">
+                  ESPECIALISTA: {{ a.specialistName }}
+                </li>
+                <li class="list-group-item">DIA: {{ a.day | date }}</li>
+                <!-- <li class="list-group-item">DIA: {{ formatDate(a.day) }}</li> -->
+                <li class="list-group-item">
+                  HORA: {{ a.time | time }}
+                  <!-- HORA: {{ convertTo12HourFormat(a.time) }} -->
+                </li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              class="btn btn-dark"
+              (click)="bookAppointment(a.id)"
+              *ngIf="user.profile == 'admin' ? isPatientSelected : true"
+              [disabled]="spinner"
+            >
+              <span
+                class="spinner-border spinner-border-sm"
+                aria-hidden="true"
+                [hidden]="!spinner"
+              ></span>
+              RESERVAR
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 p-0" style="height: 100%">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-25 text-light"
+        id="logo"
+      >
+        <div class="d-flex justify-content-center align-items-center">
+          <img src="./../../../assets/clinic-icon.png" alt="" width="100px" />
+          <h1>Clínica OnLine</h1>
+        </div>
+        <i
+          class="bi bi-arrow-left-circle-fill"
+          style="font-size: 2em"
+          (click)="goBack()"
+          >VOLVER</i
+        >
+      </div>
+      <div
+        class="d-flex flex-column justify-content-center align-items-center w-100"
+        style="min-height: 75vh"
+        id="filters"
+      >
+        <h2 class="text-light">ESPECIALISTA</h2>
+        <div
+          class="d-flex justify-content-center align-items-center w-100 wrap"
+        >
+          <button
+            class="d-flex justify-content-center align-items-center square rounded"
+            *ngFor="let specialist of specialistList"
+            (click)="changeSpecialist(specialist.dni)"
+          >
+            <img
+              src="{{ specialist.image }}"
+              alt=""
+              class="image"
+              width="60px"
+            />
+          </button>
+        </div>
+
+        <h2 class="text-light" *ngIf="specialistSpecialtyList.length > 0">
+          ESPECIALIDAD
+        </h2>
+        <div
+          class="d-flex justify-content-center align-items-center w-100 wrap"
+          *ngIf="specialistSpecialtyList.length > 0"
+        >
+          <button
+            class="d-flex flex-column justify-content-center align-items-center rectangular rounded"
+            *ngFor="let specialty of specialistSpecialtyList"
+            (click)="changeSpecialty(specialty.name)"
+          >
+            <img
+              src="{{ specialty.image }}"
+              alt=""
+              class="image"
+              width="60px"
+            />
+            {{ specialty.name }}
+          </button>
+        </div>
+
+        <h2 class="text-light" *ngIf="dateList.length > 0">FECHA</h2>
+        <div
+          class="d-flex justify-content-center align-items-center w-100 wrap"
+          *ngIf="dateList.length > 0"
+        >
+          <button
+            class="d-flex justify-content-center align-items-center square rounded"
+            *ngFor="let date of dateList"
+            (click)="changeDate(date)"
+          >
+            {{ date | date }}
+            <!-- {{ formatDate(date) }} -->
+          </button>
+        </div>
+        <h2 class="text-light" *ngIf="timeList.length > 0">HORA</h2>
+
+        <div
+          class="d-flex justify-content-center align-items-center w-100 wrap"
+          *ngIf="timeList.length > 0"
+        >
+          <button
+            class="d-flex justify-content-center align-items-center rectangular rounded"
+            *ngFor="let time of timeList"
+            (click)="changeTime(time)"
+          >
+            {{ time | time }}
+            <!-- {{ convertTo12HourFormat(time) }} -->
+          </button>
+        </div>
+
+        <h2 class="text-light" *ngIf="user.profile == 'admin'">PACIENTE</h2>
+        <select
+          class="form-select w-50 text-center"
+          aria-label="Default select example"
+          (change)="changePatient($event)"
+          *ngIf="user.profile == 'admin'"
+        >
+          <option selected disabled>PACIENTE</option>
+          <option
+            *ngFor="let patient of patientList"
+            value="{{ patient.dni }}_{{ patient.firstname }} {{
+              patient.lastname
+            }}"
+          >
+            {{ patient.firstname | name }} {{ patient.lastname | name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

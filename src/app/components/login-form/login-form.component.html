@@ -1,0 +1,46 @@
+<form [formGroup]="form" (ngSubmit)="sentForm()">
+  <div class="row">
+    <div class="form-control-group col-12">
+      <label class="form-label text-center col-12 fs-3" for="email"
+        >Correo electrónico</label
+      >
+      <input
+        type="email"
+        class="form-control form-control-lg"
+        id="email"
+        formControlName="email"
+      />
+      <ng-container *ngIf="email?.hasError('email')">
+        <small class="text-danger">Formato inválido</small>
+      </ng-container>
+      <ng-container *ngIf="email?.hasError('required')">
+        <small> Este campo es obligatorio </small>
+      </ng-container>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="form-control-group col-12">
+      <label class="form-label text-center col-12 fs-3" for="password"
+        >Contraseña</label
+      >
+      <input
+        type="password"
+        class="form-control form-control-lg"
+        id="password"
+        formControlName="password"
+      />
+      <ng-container *ngIf="password?.hasError('required')">
+        <small> Este campo es obligatorio </small>
+      </ng-container>
+    </div>
+  </div>
+
+  <button
+    type="submit"
+    class="btn btn-dark w-100 mt-4"
+    [disabled]="email?.errors || password?.errors"
+  >
+    ACCEDER
+  </button>
+</form>

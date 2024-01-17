@@ -1,0 +1,230 @@
+<h2 class="text-light text-center">PACIENTE</h2>
+<form
+  [formGroup]="form"
+  (ngSubmit)="sentForm()"
+  class="container-fluid text-center text-light mh-100"
+>
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Pfirstname">
+        NOMBRE
+        <br />
+        <ng-container *ngIf="firstname?.hasError('pattern')">
+          <small class="text-light">(Sólo debe contener letras)</small>
+        </ng-container>
+        <ng-container *ngIf="firstname?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="Pfirstname"
+        formControlName="firstname"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Plastname">
+        APELLIDO
+        <br />
+        <ng-container *ngIf="lastname?.hasError('pattern')">
+          <small class="text-light">(Sólo debe contener letras)</small>
+        </ng-container>
+        <ng-container *ngIf="lastname?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="text"
+        class="form-control"
+        id="Plastname"
+        formControlName="lastname"
+      />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Page">
+        EDAD
+        <br />
+        <ng-container *ngIf="age?.hasError('min') || age?.hasError('max')">
+          <small class="text-light">(Debe tener una edad válida)</small>
+        </ng-container>
+        <ng-container *ngIf="age?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+      </label>
+      <input
+        type="number"
+        class="form-control"
+        id="Page"
+        formControlName="age"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Pdni">
+        DNI
+        <br />
+        <ng-container
+          *ngIf="dni?.hasError('minlength') || dni?.hasError('maxlength')"
+        >
+          <small class="text-light">(Longitud no válida)</small>
+        </ng-container>
+        <ng-container *ngIf="dni?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+        <ng-container *ngIf="dni?.hasError('pattern')">
+          <small class="text-light">(Solo números)</small>
+        </ng-container>
+        <small class="text-light">
+          {{ dni?.getError("patientExist") }}
+        </small>
+      </label>
+      <input type="text" class="form-control" id="Pdni" formControlName="dni" />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Pmail">
+        CORREO ELECTRÓNICO
+        <br />
+        <ng-container *ngIf="email?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+        <ng-container *ngIf="email?.hasError('email')">
+          <small class="text-light">(Formato inválido)</small>
+        </ng-container>
+        <small class="text-light">
+          {{ email?.getError("emailExist") }}
+        </small>
+      </label>
+      <input
+        type="email"
+        class="form-control"
+        id="Pmail"
+        formControlName="email"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label class="form-label" for="healthcare">
+        OBRA SOCIAL
+        <br />
+        <small class="text-light">
+          {{ healthcare?.getError("noSelected") }}
+        </small>
+      </label>
+      <select
+        class="form-select text-center"
+        aria-label="Default select example"
+        id="healthcare"
+        formControlName="healthcare"
+        (change)="addHealthcare($event)"
+      >
+        <option value="{{ hc.name }}" *ngFor="let hc of healthcareList">
+          {{ hc.name }}
+        </option>
+        <option value="Otra">Otra</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Ppassword">
+        CONTRASEÑA
+        <br />
+        <ng-container *ngIf="password?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+        <ng-container *ngIf="password?.hasError('minlength')">
+          <small class="text-light">
+            (Longitud minima:
+            {{ password?.getError("minlength").requiredLength }} caracteres)
+          </small>
+        </ng-container>
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="Ppassword"
+        formControlName="password"
+      />
+    </div>
+
+    <div class="form-control-group col-6">
+      <label class="form-label" for="PrepeatPassword">
+        REPETIR CONTRASEÑA
+        <br />
+        <ng-container *ngIf="password?.hasError('required')">
+          <small class="text-light">(Este campo es obligatorio)</small>
+        </ng-container>
+        <small class="text-light">
+          {{ repeatPassword?.getError("noMatch") }}
+        </small>
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="PrepeatPassword"
+        formControlName="repeatPassword"
+      />
+    </div>
+  </div>
+
+  <div class="row d-flex justify-content-between">
+    <div class="form-control-group col-6">
+      <label class="form-label" for="Pimage">
+        IMAGEN
+        <br />
+        <ng-container *ngIf="images?.hasError('required')">
+          <small class="text-light">(Debe escoger imagen)</small>
+        </ng-container>
+      </label>
+      <input
+        class="form-control"
+        formControlName="images"
+        id="Pimage"
+        type="file"
+        required
+        (change)="onFileSelected($event)"
+        accept="image/*"
+        style="font-size: 1em"
+        multiple
+      />
+    </div>
+
+    <re-captcha
+      class="g-recaptcha col-6 align-self-end"
+      [siteKey]="'6LciXQ4pAAAAADB85t2LKrogM4Ac18z4P5jhcoHs'"
+      (resolved)="handleCaptchaResolved()"
+    ></re-captcha>
+  </div>
+  <button
+      type="submit"
+      class="btn btn-dark col-6 h-50 "
+      [disabled]="
+        firstname?.errors ||
+        lastname?.errors ||
+        dni?.errors ||
+        age?.errors ||
+        email?.errors ||
+        healthcare?.errors ||
+        password?.errors ||
+        repeatPassword?.errors ||
+        images?.errors ||
+        !captchaResolved
+      "
+    >
+      <span
+        class="spinner-border spinner-border-sm"
+        aria-hidden="true"
+        [hidden]="!spinner"
+      ></span>
+      REGISTRAR
+    </button>
+</form>

@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row" style="height: 100vh">
+    <div class="col-md-6 p-0" style="min-height: 100%; flex: 1;">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100"
+        id="logo"
+      >
+        <div class="d-flex justify-content-center align-items-center">
+          <img src="./../../../assets/clinic-icon.png" alt="" width="150px" />
+          <h1>Clínica OnLine</h1>
+        </div>
+        <i
+          class="bi bi-arrow-left-circle-fill"
+          style="font-size: 3em"
+          (click)="goBack()"
+          >VOLVER</i
+        >
+      </div>
+    </div>
+    <div class="col-md-6 p-0" style="min-height: 100%; flex: 1;">
+      <div
+        class="d-flex flex-column justify-content-center align-items-center h-100"
+        id="data"
+      >
+        <div [@slideInFromTop]="loading ? 'void' : ''">
+          <!-- INFO -->
+          <app-user-profile
+            (optionEvent)="changeOption($event)"
+            *ngIf="selectedOption == 'profile'"
+          ></app-user-profile>
+          <app-user-availability
+            (optionEvent)="changeOption($event)"
+            *ngIf="selectedOption == 'current-availability'"
+          ></app-user-availability>
+          <app-availability-form
+            (optionEvent)="changeOption($event)"
+            *ngIf="selectedOption == 'availability'"
+          ></app-availability-form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
