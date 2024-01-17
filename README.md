@@ -1,27 +1,22 @@
-# Clinica
+# Clinica Online - Plataforma Integrada de Gestión Médica
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
+<img src="https://github.com/martin-pedraza/ClinicaOnline/blob/master/src/assets/clinic-icon.png" width="150" height="150" alt="Clinica Logo">
 
-## Development server
+Bienvenido a Clinica, una plataforma desarrollada con Angular y Firebase que sirve como un espacio integrado para profesionales de la salud que desean ofrecer sus servicios a través de la programación de citas médicas. Los pacientes pueden solicitar citas de manera sencilla, fomentando una comunicación eficiente entre los proveedores de atención médica y aquellos que buscan asistencia médica. Además, el sistema otorga a los administradores funciones extensas, como el acceso a diversas estadísticas y la generación de informes detallados en formato Excel. La utilización de Angular garantiza una interfaz de usuario receptiva y dinámica, mientras que Firebase actúa como una sólida solución de backend, proporcionando una experiencia completa y tecnológicamente avanzada en la gestión clínica.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Visión General del Proyecto
 
-## Code scaffolding
+### Funcionalidades Destacadas
+1. **Programación de Citas:** Los pacientes pueden solicitar citas médicas de manera eficiente.
+2. **Estadísticas Avanzadas:** Los administradores pueden acceder a diversas estadísticas para una gestión eficaz.
+3. **Generación de Informes:** Capacidad para generar informes detallados en formato Excel.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tecnologías Utilizadas
+- **Framework Frontend:** Angular
+- **Backend y Base de Datos:** Firebase
 
-## Build
+## Demo en Vivo
+Explora Clinica y experimenta una gestión clínica avanzada: [Clinica - Plataforma Médica](https://clinica-b48cb.web.app)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Contribución
+¡Contribuciones, informes de errores y sugerencias de características son bienvenidos! Siéntete libre de abrir problemas o enviar solicitudes de extracción.
