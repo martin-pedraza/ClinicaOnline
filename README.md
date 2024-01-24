@@ -11,6 +11,17 @@ Bienvenido a Clinica, una plataforma desarrollada con Angular y Firebase que sir
 2. **Estadísticas Avanzadas:** Los administradores pueden acceder a diversas estadísticas para una gestión eficaz.
 3. **Generación de Informes:** Capacidad para generar informes detallados en formato Excel.
 
+## Importante para Especialistas Médicos
+Para el correcto funcionamiento de la plataforma, se recomienda que los especialistas médicos realicen los siguientes pasos:
+
+1. **Establecer Turnos:** Accede a la sección "Perfil" desde tu cuenta y establece tus disponibilidades horarias configurando los turnos que estás dispuesto a ofrecer.
+
+2. **Confirmación de Turnos:** Una vez que un paciente haya solicitado un turno, confirma la solicitud para indicar tu disponibilidad real.
+
+3. **Finalización del Turno:** Después de atender al paciente, finaliza el turno proporcionando la información relevante sobre la consulta.
+
+Este proceso garantizará una gestión eficiente de las citas médicas y una experiencia fluida tanto para los especialistas como para los pacientes.
+
 ## Tecnologías Utilizadas
 - **Framework Frontend:** Angular
 - **Backend y Base de Datos:** Firebase
