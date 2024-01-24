@@ -1,11 +1,11 @@
 <div class="container-fluid">
+  <h2 class="text-light text-center col-12 my-3">PACIENTES</h2>
   <div
     class="overflow-auto d-flex justify-content-center flex-wrap flex-column"
-    style="max-height: 70vh"
+    style="max-height: 70vh; max-width: 70vh;"
   >
-    <h2 class="text-light text-center col-12 my-3">PACIENTES</h2>
 
-    <div class="card" *ngFor="let p of patientList">
+    <div class="card" *ngFor="let p of patientList" style="min-width: 100%;">
       <h5 class="card-header">{{ p.patientName }}</h5>
       <div class="card-body">
         <p class="card-text">
